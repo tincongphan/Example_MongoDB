@@ -1,12 +1,4 @@
 
-const mongoose = require('mongoose');
-const CourseModel = require("./models/courses")
-
-
-mongoose.connect("mongodb://localhost:27017/courses", {useNewUrlParser: true, useUnifiedTopology: true})
-    .then( () => console.log("Connected to MongoDB"))
-    .catch( (error) => console.log(error) )
-
 /* Có 2 cách tạo document trong MongoDB
     1/ Dùng save()
     2/ Dùng create()
