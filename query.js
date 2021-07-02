@@ -14,8 +14,13 @@ mongoose.connect("mongodb://localhost:27017/courses", { useNewUrlParser: true, u
 -   Thêm điều kiện tìm kiếm trong find. Ex: CourseModel.find({author: "tommy"})
 */
 
-CourseModel.find()
-    .limit(2)
-    .select({name: 1, author: 1})
-    // .select ("name author")
+// Toán tử so sánh. Tìm trong course, document nào có  10 <= price <= 30 
+CourseModel.find({price : {$gte: 10, $lte: 30}})
+    .select("name author price")
+    .then(course => console.log(course) )
+
+// Tìm trong course, document nào có price = 10, 20 dùng $in 
+
+CourseModel.find({price : {$in : [10, 20]}})
+    .select("name author price")
     .then(course => console.log(course))
