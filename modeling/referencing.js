@@ -21,6 +21,7 @@ const CommentChema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Post"
     }, 
+
     username: { type: String, require: true },
     content: { type: String, require: true },
 })
@@ -87,3 +88,21 @@ Comment.find()
     .populate("postId", "title -_id")
     .then(console.log)
     .catch(console.log)
+
+/*  Kĩ thuật referencing
+-  Tên khác: linking, normalization
+-  Giả giử 1 bài post có 1000 comments
+-  Cấu trúc: dữ liệu được lưu thành 1 + 1000 = 1001 file trên ổ cứng
+
+Ưu điểm:
+
+- Khi số lượng comments tăng đột biến > 1000 comments
+thì vẫn không vượt quá maximun size dành cho 1 file trên ổ cứng
+- Dùng khi số lượng sub-document quá lớn.
+- Khắc phục nhược điểm của embedding
+
+Nhược điểm:
+
+-  Phải query nhiều lấn 
+ 
+ */
